@@ -1,4 +1,13 @@
+# 목차
 
+1. [Nextjs](#section-1)
+2. [SWR](#section-2)
+
+<br/><br/>
+
+## Nextjs
+
+<br/><br/>
 
 ## ❗ 동적 라우팅을 왜 사용하는가..??
 
@@ -88,4 +97,87 @@ export default function 페이지이름({params}:Props){
 
 <br/><br/>
 
+## SWR
 
+<br/><br/>
+
+## SWR 시작하기
+### 설치
+
+```console
+// npm으로 설치
+
+npm i swr
+
+```
+<br/>
+
+### SWR 기본 사용법
+
+```typescript
+import useSWR from 'swr';
+
+const fetchData = 
+
+const data = () => {
+  
+	const { data, error, isLoading } = useSWR('/api/test', fetcher);
+  	// useSWR(key값, 패치(axios 또는 네이티브 fetch) 함수) => data와 error 반환
+  
+  	if (error) return <div>failed to load</div>
+  	if (isLoading) return <div>lading...</div>
+  
+  	return <div>hello {data.name}</div>
+}
+
+```
+<br/>
+
+### SWR 주요 옵션
+
+```typescript
+const { data, error, isValidating, mutate } = useSWR(key, fetcher, options)
+```
+<br/>
+
+##### 파라미터
+key : 요청을 위한 고유키
+fetcher(선택) : 데이터를 가져오기 위한 함수를 반환하는 Promise
+options(선택) : SWR hook을 위한 옵션 객체
+
+<br/>
+
+##### 반환 값
+data : fetcher로 받아온 key에 대한 데이터
+error : fetcher에서 발생한 에러
+isValidating : 요청이나 갱신 로딩 여부
+mutate() : 캐시 된 데이터를 뮤테이트(갱신)하기 위한 함수
+
+
+### 재사용성으로 만들기
+
+```typescript
+
+const useUser = (id) => {
+  const { data, error, isLoading } = useSWR(`/api/user/${id}`, fetcher)
+ 
+  return {
+    user: data,
+    isLoading,
+    isError: error
+  }
+}
+
+```
+
+후 컴포넌트에서 사용해보자
+
+```typescript
+const Avatar = ({ id }) => {
+  const { user, isLoading, isError } = useUser(id)
+ 
+  if (isLoading) return <Spinner />
+  if (isError) return <Error />
+  return <img src={user.avatar} />
+}
+```
