@@ -1,3 +1,9 @@
+1. [섹션 1](#section-1)
+2. [섹션 2](#section-2)
+3. [섹션 3](#section-3)
+
+
+
 # 목차
 
 1. [Nextjs](#section-1)
@@ -181,3 +187,5 @@ const Avatar = ({ id }) => {
   return <img src={user.avatar} />
 }
 ```
+## 섹션 1
+파트 1의 내용을 여기에 작성합니다.
