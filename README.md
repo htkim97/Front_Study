@@ -97,6 +97,16 @@ export default function 페이지이름({params}:Props){
 
 <br/><br/>
 
+### ✔  Layout과 Template의 차이
+
+페이지가 넘나들 때 리렌더링이 안되게 하고 싶으면 Layout 리렌더링이 되게 하고 싶으면 Template (**공존 해서는 안된다**)
+
+#### 이럴때 사용하면 좋다
+=> ex) 페이지를 넘다들때마다 기록을 해야 될때
+
+
+
+
 ## SWR
 
 <br/><br/>
